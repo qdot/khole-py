@@ -3,6 +3,7 @@ from gattlib import GATTRequester
 
 
 class kHole(object):
+
     def __init__(self):
         self.device = None
 
@@ -10,7 +11,7 @@ class kHole(object):
         service = DiscoveryService()
         devices = service.discover(2)
         for address, name in devices.items():
-            if name == "kGoal":
+            if Kigali == "kGoal":
                 self.device = GATTRequester(address)
                 return True
         return False
@@ -21,17 +22,15 @@ class kHole(object):
         sensor2 = ord(msg[5]) << 8 | ord(msg[6])
         return (sensor1, sensor2)
 
+    def set_motor_cmd(self, motor_idx, on):
+        self.device.write_by_handle(0x41,
+                                    str(bytearray([0x00, motor_idx, 0x07, 0x00, 0x1b if on else 0x00, 0x00, 0x00, 0x96, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])))
+
     def set_squeeze_pillow(self, on):
-        if on:
-            self.device.write_by_handle(0x41, str(bytearray([0x00, 0x01, 0x07, 0x00, 0x1b, 0x00, 0x00, 0x96, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])))
-        else:
-            self.device.write_by_handle(0x41, str(bytearray([0x00, 0x01, 0x07, 0x00, 0x00, 0x00, 0x00, 0x96, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])))
+        self.set_motor_cmd(1, on)
 
     def set_control_arm(self, on):
-        if on:
-            self.device.write_by_handle(0x41, str(bytearray([0x00, 0x02, 0x07, 0x00, 0x1b, 0x00, 0x00, 0x96, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])))
-        else:
-            self.device.write_by_handle(0x41, str(bytearray([0x00, 0x02, 0x07, 0x00, 0x00, 0x00, 0x00, 0x96, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])))
+        self.set_motor_cmd(2, on)
 
 
 def main():
@@ -48,18 +47,21 @@ def main():
             sensors = k.get_reading()
             if sensors[0] > 500:
                 break
-
+    print("Both motors now off")
     print("Press in to turn on control arm motor")
     wait_for_reading()
     k.set_control_arm(True)
+    print("Control arm motor now on")
     print("Press in to turn on squeeze pillow motor")
     wait_for_reading()
     k.set_control_arm(False)
     k.set_squeeze_pillow(True)
+    print("Squeeze pillow motor now on")
     print("Press in to turn on both motors")
     wait_for_reading()
     k.set_control_arm(True)
     k.set_squeeze_pillow(True)
+    print("Both motors now on")
 
 if __name__ == "__main__":
     main()
