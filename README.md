@@ -27,7 +27,9 @@ To read information from the device, issue a characteristic read
 request to handle 0x2a. This should return a 19 byte value, similar to
 the one below:
 
+```
 00 01 04 01 9b 07 67 00 00 00 00 00 00 00 00 00 00 00
+```
 
 The important values are bytes 3-4 (0x019b), and bytes 5-6 (0x0767).
 They're big endian sensor readings that vary linearly based on how
