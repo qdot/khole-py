@@ -1,17 +1,20 @@
-# kHole (Python Version)
+kHole (Python Version)
+======================
 
 Reverse engineered drivers for the
-[Minna kGoal](http://www.minnalife.com/products/kgoal) kegel
+`Minna kGoal <http://www.minnalife.com/products/kgoal>`__ kegel
 exerciser.
 
-## Description
+Description
+-----------
 
 The kGoal is a Bluetooth LE Kegelcizer device, made to communicate
 with iPhone and android phones. The kHole project aims to make the
 device accessible to other platforms, such as desktop, arduino,
 Raspberry Pi, and other bluetooth accessible systems.
 
-## Protocol
+Protocol
+--------
 
 In terms of communication, the kGoal is a fairly simple device, It
 uses BTLE to connect to a host, with no pairing or long term key
@@ -27,23 +30,23 @@ To read information from the device, issue a characteristic read
 request to handle 0x2a. This should return a 19 byte value, similar to
 the one below:
 
-```
 00 01 04 01 9b 07 67 00 00 00 00 00 00 00 00 00 00 00
-```
 
 The important values are bytes 3-4 (0x019b), and bytes 5-6 (0x0767).
 They're big endian sensor readings that vary linearly based on how
 much the kGoal is being squeezed. Still not exactly sure what the
 differences in the sensor readings are.
 
-## Python Implementation
+Python Implementation
+---------------------
 
 The python implementation in the library allows access to the
 aforementioned functionality. As it is using pybluez, it will
 currently only work on linux. But who doesn't do their kegels near a
 linux box these days?
 
-## License
+License
+-------
 
 kHole-py is BSD licensed.
 
