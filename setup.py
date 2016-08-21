@@ -2,10 +2,10 @@
 
 from setuptools import setup, find_packages
 import os
-import kHole
+import khole
 
-setup(name='buttshock',
-      version="{}".format(kHole.VERSION),
+setup(name='kHole',
+      version="{}".format(khole.VERSION),
 	  description='Python Libraries for controlling and reading the Minna kGoal Bluetooth Kegelcizer',
       long_description=(open('README.rst').read() + '\n' + open(os.path.join('CHANGES.rst')).read()),
       author='qDot',
