@@ -18,9 +18,9 @@ class kHoleDevice(object):
 
     def get_reading(self):
         msg = self.device.read_by_handle(0x2a)[0]
-        sensor1 = ord(msg[3]) << 8 | ord(msg[4])
-        sensor2 = ord(msg[5]) << 8 | ord(msg[6])
-        return (sensor1, sensor2)
+        calibrated = ord(msg[3]) << 8 | ord(msg[4])
+        uncalibrated = ord(msg[5]) << 8 | ord(msg[6])
+        return (calibrated, uncalibrated)
 
     def set_motor_cmd(self, motor_idx, on):
         self.device.write_by_handle(0x41,

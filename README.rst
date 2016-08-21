@@ -32,10 +32,16 @@ the one below:
 
 00 01 04 01 9b 07 67 00 00 00 00 00 00 00 00 00 00 00
 
-The important values are bytes 3-4 (0x019b), and bytes 5-6 (0x0767).
-They're big endian sensor readings that vary linearly based on how
-much the kGoal is being squeezed. Still not exactly sure what the
-differences in the sensor readings are.
+The important values are:
+
+- bytes 3-4 (0x019b in example) - This is the big-endian calibrated
+  sensor reading, starting from 0 based on the last calibration
+  setting and going up. Calibration can be reset by hitting the button
+  on the top of the toy, which makes the LED turn green.
+- bytes 5-6 (0x0767 in example) - This is the big-endian uncalibrated
+  sensor reading. It'll always report the same range no matter the
+  calibration setting.
+
 
 Python Implementation
 ---------------------
