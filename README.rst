@@ -20,7 +20,7 @@ In terms of communication, the kGoal is a fairly simple device, It
 uses BTLE to connect to a host, with no pairing or long term key
 exchange. After this, the host can do the following things:
 
-- Request the values of 2 internal sensors
+- Request the values of the internal pressure sensor
 - Set whether vibration feedback happens via "Squeeze Pillow" or
   "Control Arm"
   
@@ -42,14 +42,19 @@ The important values are:
   sensor reading. It'll always report the same range no matter the
   calibration setting.
 
+So, in the case of our example above, the calibration point was set at
+0x767 - 0x19b = 0x5cc. If the uncalibrated reading is <= 0x5cc, the
+calibrated reading will just read 0x0.
+
 
 Python Implementation
 ---------------------
 
 The python implementation in the library allows access to the
-aforementioned functionality. As it is using pybluez, it will
-currently only work on linux. But who doesn't do their kegels near a
-linux box these days?
+aforementioned functionality. As it is using pybluez and gattlib, it
+will currently only work on linux (and also requires some boost
+installs. Sorry. I'm not happy about it either.). But who doesn't do
+their kegels near a linux box these days?
 
 License
 -------
