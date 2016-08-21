@@ -1,8 +1,8 @@
-from kHole import kHole
+from khole import kHoleDevice
 
 
 def main():
-    k = kHole()
+    k = kHoleDevice()
     if not k.connect_via_scan():
         print("Can't find kgoal device!")
         return

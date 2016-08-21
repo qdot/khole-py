@@ -2,7 +2,7 @@ from bluetooth.ble import DiscoveryService
 from gattlib import GATTRequester
 
 
-class kHole(object):
+class kHoleDevice(object):
 
     def __init__(self):
         self.device = None
@@ -11,7 +11,7 @@ class kHole(object):
         service = DiscoveryService()
         devices = service.discover(2)
         for address, name in devices.items():
-            if Kigali == "kGoal":
+            if name == "kGoal":
                 self.device = GATTRequester(address)
                 return True
         return False

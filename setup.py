@@ -4,9 +4,9 @@ from setuptools import setup, find_packages
 import os
 import khole
 
-setup(name='kHole',
+setup(name='khole',
       version="{}".format(khole.VERSION),
-	  description='Python Libraries for controlling and reading the Minna kGoal Bluetooth Kegelcizer',
+	  description='kHole - Python Libraries for controlling and reading the Minna kGoal Bluetooth Kegelcizer',
       long_description=(open('README.rst').read() + '\n' + open(os.path.join('CHANGES.rst')).read()),
       author='qDot',
       author_email='kyle@machul.is',
