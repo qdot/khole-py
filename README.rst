@@ -5,6 +5,8 @@ Reverse engineered drivers for the
 `Minna kGoal <http://www.minnalife.com/products/kgoal>`__ kegel
 exerciser.
 
+Javascript version at `khole-js <https://github.com/metafetish/khole-js>`__
+
 Description
 -----------
 
